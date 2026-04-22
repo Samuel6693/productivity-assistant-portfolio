@@ -1,0 +1,194 @@
+.habits-page {
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.habits-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.habits-header h1 {
+  margin: 0;
+  text-align: left;
+  color: #fff;
+}
+
+.habits-header a {
+  color: #646cff; 
+  background: none;
+  padding: 0;
+  border: none;
+  font-size: 24px;
+  
+}
+
+.habits-page h1,
+.habits-page h2 {
+  color: #fff;
+}
+.habits-page section h2 {
+  margin-bottom: 1rem;
+ text-align: center;
+}
+
+.habit-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: #1a1a1a;
+}
+
+.habit-form label,
+.controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  font-weight: 500;
+}
+
+.controls select,
+.controls button.order-btn {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #111;
+  color: white;
+  min-width: 200px;
+}
+
+.controls button.order-btn {
+  cursor: pointer;
+}
+.habit-form input,
+.habit-form select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #111;
+  color: white;
+  min-width: 220px;
+}
+
+.habit-form button {
+  padding: 10px;
+  border-radius: 6px;
+  background: #646cff;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.form-actions button:last-child {
+  background: #333;
+  border: 1px solid #555;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.controls {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: #1a1a1a;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #111;
+  color: white;
+}
+
+.habit-list {
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.habit-item {
+  padding: 15px;
+  border: 1px solid #555;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  background: #1a1a1a;
+}
+
+.habit-item .left {
+  flex: 1;
+  text-align: left;
+}
+
+.habit-item .left strong {
+  display: block;
+  margin-bottom: 6px; 
+}
+
+.habit-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.habit-item .right {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.habit-item button,
+.habit-actions button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #333;
+  border: 1px solid #555;
+  cursor: pointer;
+  color: white;
+}
+
+.habit-item .meta {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-top: 2px; 
+}
+
+.top-habits {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.top-habits ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.top-habits li {
+  margin: 6px 0;
+  color: #fff;
+}
+
+ 
