@@ -1,42 +1,24 @@
-import { useEffect, useState } from "react";
-import { getTopHabits } from "./HabitRanker";
-
-// Custom hook för att hämta top N(antal) rutiner och totalen av registrerade rutiner
 export default function useTopHabits(count = 3) {
-  const [top, setTop] = useState([]);
-  const [total, setTotal] = useState(0);
+  try {
+    const habits = JSON.parse(localStorage.getItem("habits")) || [];
+    const normalized = (habits || []).map((habit) => ({
+      id: String(habit?.id || habit?._id || crypto.randomUUID()),
+      title: String(habit?.title || habit?.name || ""),
+      priority:
+        habit?.priority && ["low", "medium", "high"].includes(habit.priority)
+          ? habit.priority
+          : habit?.priorityLabel
+            ? String(habit.priorityLabel).toLowerCase()
+            : "medium",
+      repetitions: Number(habit?.repetitions !== undefined ? habit.repetitions : habit?.count || 0),
+    }));
 
-  useEffect(() => {
-    const update = () => {
-      try {
-        const raw = JSON.parse(localStorage.getItem("habits")) || [];
-        const normalized = (raw || []).map((h, idx) => ({
-          id: h && (h.id || h._id) ? String(h.id || h._id) : String(Date.now()) + "-" + idx,
-          title: (h && (h.title || h.name)) ? String(h.title || h.name) : "",
-          priority: (h && h.priority && (["low","medium","high"].includes(h.priority))) ? h.priority : (h && h.priorityLabel ? String(h.priorityLabel).toLowerCase() : 'medium'),
-          repetitions: Number((h && (h.repetitions !== undefined ? h.repetitions : h.count)) || 0),
-        }));
+    const top = [...normalized]
+      .sort((a, b) => Number(b.repetitions || 0) - Number(a.repetitions || 0))
+      .slice(0, count);
 
-        setTotal(normalized.length);
-
-        // getTopHabits läser från localStorage och rankar, så den kan används
-        const ranked = getTopHabits(count);
-        setTop(ranked);
-      } catch (e) {
-        setTop([]);
-        setTotal(0);
-      }
-    };
-
-    update();
-
-    const onStorage = (e) => {
-      if (!e.key || e.key === 'habits') update();
-    };
-
-    window.addEventListener('storage', onStorage);
-    return () => window.removeEventListener('storage', onStorage);
-  }, [count]);
-
-  return { top, total };
+    return { top, total: normalized.length };
+  } catch {
+    return { top: [], total: 0 };
+  }
 }

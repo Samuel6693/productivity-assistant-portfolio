@@ -15,8 +15,6 @@ const HabitsPage = ({ habits = [], setHabits = () => {} }) => {
 
   const PRIORITIES = ["low", "medium", "high"];
 
-
-
   const resetForm = () => {
     setTitle("");
     setPriority("medium");
@@ -25,11 +23,11 @@ const HabitsPage = ({ habits = [], setHabits = () => {} }) => {
   };
 
   const validate = () => {
-    if (!title.trim()) return "Titel krävs";
-    if (!PRIORITIES.includes(priority)) return "Ogiltig prioritering";
-    if (repetitions < 0) return "Antal repetitioner måste vara 0 eller större";
+    if (!title.trim()) return "Title is required";
+    if (!PRIORITIES.includes(priority)) return "Invalid priority";
+    if (repetitions < 0) return "Repetitions must be 0 or greater";
     return null;
-  }; 
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +36,9 @@ const HabitsPage = ({ habits = [], setHabits = () => {} }) => {
 
     if (editId) {
       setHabits((prev) =>
-        prev.map((h) => (h.id === editId ? { ...h, title: title.trim(), priority, repetitions } : h))
+        prev.map((habit) =>
+          habit.id === editId ? { ...habit, title: title.trim(), priority, repetitions } : habit,
+        ),
       );
       resetForm();
       return;
@@ -54,120 +54,154 @@ const HabitsPage = ({ habits = [], setHabits = () => {} }) => {
     resetForm();
   };
 
-  const removeHabit = (id) => setHabits((prev) => prev.filter((h) => h.id !== id));
+  const removeHabit = (id) => setHabits((prev) => prev.filter((habit) => habit.id !== id));
   const inc = (id) =>
-    setHabits((prev) => prev.map((h) => (h.id === id ? { ...h, repetitions: (h.repetitions || 0) + 1 } : h)));
+    setHabits((prev) =>
+      prev.map((habit) =>
+        habit.id === id ? { ...habit, repetitions: (habit.repetitions || 0) + 1 } : habit,
+      ),
+    );
   const dec = (id) =>
-    setHabits((prev) => prev.map((h) => (h.id === id ? { ...h, repetitions: Math.max(0, (h.repetitions || 0) - 1) } : h)));
-  const reset = (id) => setHabits((prev) => prev.map((h) => (h.id === id ? { ...h, repetitions: 0 } : h)));
+    setHabits((prev) =>
+      prev.map((habit) =>
+        habit.id === id ? { ...habit, repetitions: Math.max(0, (habit.repetitions || 0) - 1) } : habit,
+      ),
+    );
+  const reset = (id) =>
+    setHabits((prev) =>
+      prev.map((habit) => (habit.id === id ? { ...habit, repetitions: 0 } : habit)),
+    );
 
   const startEdit = (id) => {
-    const h = habitList.find((item) => item.id === id);
-    if (!h) return;
-    setTitle(h.title);
-    setPriority(h.priority || "medium");
-    setRepetitions(h.repetitions || 0);
-    setEditId(h.id);
+    const habit = habitList.find((item) => item.id === id);
+    if (!habit) return;
+    setTitle(habit.title);
+    setPriority(habit.priority || "medium");
+    setRepetitions(habit.repetitions || 0);
+    setEditId(habit.id);
   };
 
-  const filtered = habitList.filter((h) => (filterPriority === "all" ? true : h.priority === filterPriority));
-  const priorityWeight = (p) => (p === "high" ? 3 : p === "medium" ? 2 : 1);
+  const filtered = habitList.filter((habit) =>
+    filterPriority === "all" ? true : habit.priority === filterPriority,
+  );
+  const priorityWeight = (level) => (level === "high" ? 3 : level === "medium" ? 2 : 1);
 
   const sorted = [...filtered].sort((a, b) => {
     if (sortBy === "repetitions") {
       return sortOrder === "desc" ? b.repetitions - a.repetitions : a.repetitions - b.repetitions;
     }
-    return sortOrder === "desc" ? priorityWeight(b.priority) - priorityWeight(a.priority) : priorityWeight(a.priority) - priorityWeight(b.priority);
+    return sortOrder === "desc"
+      ? priorityWeight(b.priority) - priorityWeight(a.priority)
+      : priorityWeight(a.priority) - priorityWeight(b.priority);
   });
 
   return (
     <div className="habits-page">
       <section className="habits-header">
-        <h1>Rutiner</h1>
-        <Link to="/">Översikt</Link>
+        <h1>Habits</h1>
+        <Link to="/">Dashboard</Link>
       </section>
 
       <section>
-        <h2>{editId ? "Redigera rutin" : "Ny rutin"}</h2>
+        <h2>{editId ? "Edit habit" : "New habit"}</h2>
 
         <form onSubmit={handleSubmit} className="habit-form">
-          <label> Titel
+          <label>
+            Title
             <input value={title} onChange={(e) => setTitle(e.target.value)} />
           </label>
 
-          <label> Prioritet
+          <label>
+            Priority
             <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-              {PRIORITIES.map((p) => (
-                <option key={p} value={p}>
-                  {p === 'low' ? 'Låg' : p === 'medium' ? 'Medel' : 'Hög'}
+              {PRIORITIES.map((level) => (
+                <option key={level} value={level}>
+                  {level === "low" ? "Low" : level === "medium" ? "Medium" : "High"}
                 </option>
               ))}
             </select>
           </label>
 
-           <label> Repetitioner
-            <input type="number" min="0" value={repetitions}  onChange={(e) => {
-              const value = e.target.value;
-              if (value === "") {
-                setRepetitions("");
-              } else {
-                setRepetitions(Math.max(0, Number(value)));
-              }
-          }} />
+          <label>
+            Repetitions
+            <input
+              type="number"
+              min="0"
+              value={repetitions}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === "") {
+                  setRepetitions("");
+                } else {
+                  setRepetitions(Math.max(0, Number(value)));
+                }
+              }}
+            />
           </label>
 
           <div className="form-actions">
-            <button type="submit">{editId ? "Spara" : "Lägg till"}</button>
-            <button type="button" onClick={resetForm}> Rensa </button>
+            <button type="submit">{editId ? "Save" : "Add"}</button>
+            <button type="button" onClick={resetForm}>
+              Reset
+            </button>
           </div>
         </form>
       </section>
 
       <section className="controls">
-        <label> Filtrera
+        <label>
+          Filter
           <select value={filterPriority} onChange={(e) => setFilterPriority(e.target.value)}>
-            <option value="all">Alla</option>
-            {PRIORITIES.map((p) => (
-              <option key={p} value={p}>
-                {p === 'low' ? 'Låg' : p === 'medium' ? 'Medel' : p === 'high' ? 'Hög' : p}
+            <option value="all">All</option>
+            {PRIORITIES.map((level) => (
+              <option key={level} value={level}>
+                {level === "low" ? "Low" : level === "medium" ? "Medium" : level === "high" ? "High" : level}
               </option>
             ))}
           </select>
         </label>
 
-        <label> Sortera efter
+        <label>
+          Sort by
           <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-            <option value="repetitions">Repetitioner</option>
-            <option value="priority">Prioritet</option>
+            <option value="repetitions">Repetitions</option>
+            <option value="priority">Priority</option>
           </select>
         </label>
 
-        <label> Ordning
-          <button type="button" className="order-btn" onClick={() => setSortOrder((s) => (s === "desc" ? "asc" : "desc"))}>Ordning: {sortOrder === 'desc' ? 'Fallande' : 'Stigande'}</button>
+        <label>
+          Order
+          <button
+            type="button"
+            className="order-btn"
+            onClick={() => setSortOrder((state) => (state === "desc" ? "asc" : "desc"))}
+          >
+            Order: {sortOrder === "desc" ? "Descending" : "Ascending"}
+          </button>
         </label>
       </section>
 
       <section>
-        <h2>Alla rutiner</h2>
-        {sorted.length === 0 && <p>Inga rutiner ännu</p>}
+        <h2>All habits</h2>
+        {sorted.length === 0 && <p>No habits yet</p>}
         <div className="habit-list">
-          {sorted.map((h) => (
-            <div key={h.id} className="habit-item">
+          {sorted.map((habit) => (
+            <div key={habit.id} className="habit-item">
               <div className="left">
-                <strong>{h.title}</strong>
-                <div className="meta">Prioritet: {h.priority} • Repetitioner: {h.repetitions}</div>
+                <strong>{habit.title}</strong>
+                <div className="meta">Priority: {habit.priority} • Repetitions: {habit.repetitions}</div>
               </div>
               <div className="right">
-                <button onClick={() => inc(h.id)}>+</button>
-                <button onClick={() => dec(h.id)}>-</button>
-                <button onClick={() => reset(h.id)}>Återställ</button>
-                <button onClick={() => startEdit(h.id)}>Redigera</button>
-                <button onClick={() => removeHabit(h.id)}>Ta bort</button>
+                <button onClick={() => inc(habit.id)}>+</button>
+                <button onClick={() => dec(habit.id)}>-</button>
+                <button onClick={() => reset(habit.id)}>Reset</button>
+                <button onClick={() => startEdit(habit.id)}>Edit</button>
+                <button onClick={() => removeHabit(habit.id)}>Delete</button>
               </div>
             </div>
           ))}
         </div>
-      </section> 
+      </section>
     </div>
   );
 };
