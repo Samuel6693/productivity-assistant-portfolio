@@ -1,23 +1,23 @@
 const EventList = ({ events, onEdit, onDelete }) => {
   if (events.length === 0) {
-    return <p>Inga händelser att visa.</p>;
+    return <p>No events to display.</p>;
   }
 
   const now = new Date();
 
   return (
     <ul className="event-list">
-      {events.map((ev) => {
-        const isPast = new Date(ev.end) < now;
+      {events.map((event) => {
+        const isPast = new Date(event.end) < now;
 
         return (
-          <li key={ev.id} className={`event-item ${isPast ? "past" : ""}`}>
-            <strong>{ev.title}</strong>
-            <p>Start: {new Date(ev.start).toLocaleString()}</p>
-            <p>Slut: {new Date(ev.end).toLocaleString()}</p>
+          <li key={event.id} className={`event-item ${isPast ? "past" : ""}`}>
+            <strong>{event.title}</strong>
+            <p>Start: {new Date(event.start).toLocaleString()}</p>
+            <p>End: {new Date(event.end).toLocaleString()}</p>
 
-            <button onClick={() => onEdit(ev)}>Redigera</button>
-            <button onClick={() => onDelete(ev.id)}>Ta bort</button>
+            <button onClick={() => onEdit(event)}>Edit</button>
+            <button onClick={() => onDelete(event.id)}>Delete</button>
           </li>
         );
       })}
