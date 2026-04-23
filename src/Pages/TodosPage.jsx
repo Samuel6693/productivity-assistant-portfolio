@@ -139,7 +139,7 @@ const TodosPage = ({ todoList, setTodoList }) => {
   return (
     <div className="todos-container">
       <section>
-        <h1>Todo Page</h1>
+        <h1>Tasks</h1>
 
         <nav>
           <Link to="/">

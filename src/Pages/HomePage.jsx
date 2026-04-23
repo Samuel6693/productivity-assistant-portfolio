@@ -22,7 +22,7 @@ const HomePage = ({ todoList }) => {
         <section className="dashboard-section">
           <h2>Latest incomplete tasks</h2>
           {recentTodos.length === 0 ? (
-            <p>No incomplete tasks</p>
+            <p></p>
           ) : (
             <ul>
               {recentTodos.map((todo) => (

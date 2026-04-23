@@ -79,7 +79,7 @@ const EventsPage = () => {
   return (
     <div className="events-container">
       <section className="events-header">
-        <h1>Event Planner</h1>
+        <h1>Events</h1>
 
         <nav>
           <Link to="/">
