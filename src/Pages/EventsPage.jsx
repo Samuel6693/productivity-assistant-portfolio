@@ -11,7 +11,7 @@ const EventsPage = () => {
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [editId, setEditId] = useState(null);
-  
+
   const [events, setEvents] = useState(() => {
     const saved = localStorage.getItem("events");
     return saved ? JSON.parse(saved) : [];
@@ -25,12 +25,12 @@ const EventsPage = () => {
     e.preventDefault();
 
     if (!title || !start || !end) {
-      alert("Fyll i alla fält");
+      alert("Fill in all fields");
       return;
     }
 
     if (new Date(start) >= new Date(end)) {
-      alert("Start måste vara före slut");
+      alert("Start must be before end");
       return;
     }
 
@@ -42,7 +42,7 @@ const EventsPage = () => {
     };
 
     const updatedEvents = editId
-      ? events.map((ev) => (ev.id === editId ? newEvent : ev))
+      ? events.map((event) => (event.id === editId ? newEvent : event))
       : [...events, newEvent];
 
     updatedEvents.sort((a, b) => new Date(a.start) - new Date(b.start));
@@ -59,7 +59,7 @@ const EventsPage = () => {
   };
 
   const handleDelete = (id) => {
-    setEvents(events.filter((ev) => ev.id !== id));
+    setEvents(events.filter((event) => event.id !== id));
   };
 
   const handleCancel = () => {
@@ -70,9 +70,9 @@ const EventsPage = () => {
   };
 
   const now = new Date();
-  const filteredEvents = events.filter((ev) => {
-    if (filter === "upcoming") return new Date(ev.start) >= now;
-    if (filter === "past") return new Date(ev.end) < now;
+  const filteredEvents = events.filter((event) => {
+    if (filter === "upcoming") return new Date(event.start) >= now;
+    if (filter === "past") return new Date(event.end) < now;
     return true;
   });
 
@@ -83,13 +83,13 @@ const EventsPage = () => {
 
         <nav>
           <Link to="/">
-            <h2>Översikt</h2>
+            <h2>Dashboard</h2>
           </Link>
         </nav>
       </section>
 
       <section className="events-section">
-        <h2>{editId ? "Redigera händelse" : "Ny händelse"}</h2>
+        <h2>{editId ? "Edit event" : "New event"}</h2>
 
         <EventForm
           title={title}
@@ -110,14 +110,10 @@ const EventsPage = () => {
       </section>
 
       <section className="events-section">
-        <h2>Alla händelser</h2>
-        <p>Antal events: {filteredEvents.length}</p>
+        <h2>All events</h2>
+        <p>Number of events: {filteredEvents.length}</p>
 
-        <EventList
-          events={filteredEvents}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        />
+        <EventList events={filteredEvents} onEdit={handleEdit} onDelete={handleDelete} />
       </section>
     </div>
   );

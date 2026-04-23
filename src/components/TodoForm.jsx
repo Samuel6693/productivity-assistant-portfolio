@@ -1,8 +1,7 @@
 const TodoForm = ({ todos, setTodos, handleSubmit, handleCancel, editTodo }) => {
-
   return (
-    <form className="todo-form"onSubmit={handleSubmit}>
-      Titel:{" "}
+    <form className="todo-form" onSubmit={handleSubmit}>
+      Title:{" "}
       <input
         type="text"
         placeholder="Title"
@@ -12,20 +11,20 @@ const TodoForm = ({ todos, setTodos, handleSubmit, handleCancel, editTodo }) => 
       />
       <br />
 
-      Beskrivning:{" "}
+      Description:{" "}
       <input
         type="text"
-        placeholder="Beskriv ditt ärende"
+        placeholder="Describe your task"
         required
         value={todos.description}
         onChange={(e) => setTodos({ ...todos, description: e.target.value })}
       />
       <br />
 
-      Tidsestimat:{" "}
+      Time estimate:{" "}
       <input
         type="time"
-        placeholder="Tidsestimat"
+        placeholder="Time estimate"
         required
         value={todos.timeEstimate}
         onChange={(e) => setTodos({ ...todos, timeEstimate: e.target.value })}
@@ -34,22 +33,22 @@ const TodoForm = ({ todos, setTodos, handleSubmit, handleCancel, editTodo }) => 
 
       <label>
         {" "}
-        Kategori:{" "}
+        Category:{" "}
         <select
-          name="kategori"
+          name="category"
           required
           value={todos.category}
           onChange={(e) => setTodos({ ...todos, category: e.target.value })}
         >
-          <option value="">Välj kategori</option>
-          <option value="hälsa">Hälsa</option>
-          <option value="hushåll">Hushåll</option>
-          <option value="jobbrelaterat">Jobbrelaterat</option>
-          <option value="studier">Studier</option>
-          <option value="ekonomi">Ekonomi</option>
-          <option value="nöje">Nöje</option>
-          <option value="personlig">Personlig</option>
-          <option value="övrigt">Övrigt</option>
+          <option value="">Select category</option>
+          <option value="hÃ¤lsa">Health</option>
+          <option value="hushÃ¥ll">Home</option>
+          <option value="jobbrelaterat">Work</option>
+          <option value="studier">Studies</option>
+          <option value="ekonomi">Finance</option>
+          <option value="nÃ¶je">Leisure</option>
+          <option value="personlig">Personal</option>
+          <option value="Ã¶vrigt">Other</option>
         </select>
       </label>
       <br />
@@ -64,10 +63,10 @@ const TodoForm = ({ todos, setTodos, handleSubmit, handleCancel, editTodo }) => 
       />
       <br />
 
-      <button type="submit">{editTodo !== null ? "Spara ändringar" : "Lägg till"}</button>
+      <button type="submit">{editTodo !== null ? "Save changes" : "Add task"}</button>
 
       <button type="button" className="secondary-btn" onClick={handleCancel}>
-        Avbryt
+        Cancel
       </button>
     </form>
   );

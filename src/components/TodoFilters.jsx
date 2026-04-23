@@ -1,66 +1,65 @@
 const TodoFilters = ({
-    showFilter, 
-    setShowFilter, 
-    statusFilter, 
-    setStatusFilter, 
-    categoryFilter, 
-    setCategoryFilter, 
-    sortBy, 
-    setSortBy, 
-    sortDirection, 
-    setSortDirection}) => {
+  showFilter,
+  setShowFilter,
+  statusFilter,
+  setStatusFilter,
+  categoryFilter,
+  setCategoryFilter,
+  sortBy,
+  setSortBy,
+  sortDirection,
+  setSortDirection,
+}) => {
+  return (
+    <section>
+      <button type="button" onClick={() => setShowFilter((state) => !state)}>
+        {showFilter ? "Hide filters" : "Filters"}
+      </button>
 
-    return (
-        <section>
-            <button type="button" onClick={() => setShowFilter((s) => !s)}>
-                {showFilter ? "Dölj filter" : "Filter"}
-            </button>
+      {showFilter && (
+        <div className="filters-panel">
+          <label>
+            Status:{" "}
+            <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+              <option value="all">All</option>
+              <option value="done">Completed</option>
+              <option value="undone">Incomplete</option>
+            </select>
+          </label>
+          <label>
+            Category:{" "}
+            <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+              <option value="all">All</option>
+              <option value="hÃ¤lsa">Health</option>
+              <option value="hushÃ¥ll">Home</option>
+              <option value="jobbrelaterat">Work</option>
+              <option value="studier">Studies</option>
+              <option value="ekonomi">Finance</option>
+              <option value="nÃ¶je">Leisure</option>
+              <option value="personlig">Personal</option>
+              <option value="Ã¶vrigt">Other</option>
+            </select>
+          </label>
 
-            {showFilter && (
-                <div className="filters-panel">
-                    <label>
-                        Status: {" "}
-                        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
-                            <option value="all">Alla</option>
-                            <option value="done">Slutförda</option>
-                            <option value="undone">Ej Slutförda</option>
-                        </select>
-                    </label>
-                    <label>
-                        Category: {" "}
-                        <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
-                            <option value="all">Alla</option>
-                            <option value="hälsa">Hälsa</option>
-                            <option value="hushåll">Hushåll</option>
-                            <option value="jobbrelaterat">Jobbrelaterat</option>
-                            <option value="studier">Studier</option>
-                            <option value="ekonomi">Ekonomi</option>
-                            <option value="nöje">Nöje</option>
-                            <option value="personlig">Personlig</option>
-                            <option value="övrigt">Övrigt</option>
-                        </select>
-                    </label>
-
-                    <label>
-                        Sortera efter: {" "}
-                        <select value={sortBy} onChange={(e)=> setSortBy(e.target.value)}>
-                            <option value="none">Ingen</option>
-                            <option value="deadline">Deadline</option>
-                            <option value="timeEstimate">Tidsestimat</option>
-                            <option value="status">Status</option>
-                        </select>
-                    </label>
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"))}>
-                        {sortDirection === "asc" ? "⬆ Stigande" : "⬇ Fallande"}
-                    </button>
-
-                </div>
-            )}
-        </section>
-    )
-}
+          <label>
+            Sort by:{" "}
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+              <option value="none">None</option>
+              <option value="deadline">Deadline</option>
+              <option value="timeEstimate">Time estimate</option>
+              <option value="status">Status</option>
+            </select>
+          </label>
+          <button
+            type="button"
+            onClick={() => setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"))}
+          >
+            {sortDirection === "asc" ? "↑ Ascending" : "↓ Descending"}
+          </button>
+        </div>
+      )}
+    </section>
+  );
+};
 
 export default TodoFilters;

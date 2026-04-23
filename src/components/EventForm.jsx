@@ -7,22 +7,22 @@ const EventForm = ({
   setStart,
   setEnd,
   handleSubmit,
-  handleCancel
+  handleCancel,
 }) => {
   return (
     <form className="event-form" onSubmit={handleSubmit}>
-      <h2>{editId ? "Redigera händelse" : "Skapa händelse"}</h2>
+      <h2>{editId ? "Edit event" : "Create event"}</h2>
 
       <input
         type="text"
-        placeholder="Titel"
+        placeholder="Title"
         required
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
 
       <label>
-        Starttid:
+        Start time:
         <input
           type="datetime-local"
           required
@@ -32,7 +32,7 @@ const EventForm = ({
       </label>
 
       <label>
-        Sluttid:
+        End time:
         <input
           type="datetime-local"
           required
@@ -41,13 +41,11 @@ const EventForm = ({
         />
       </label>
 
-      <button type="submit">
-        {editId ? "Spara ändringar" : "Lägg till"}
-      </button>
+      <button type="submit">{editId ? "Save changes" : "Add event"}</button>
 
       {editId && (
         <button type="button" onClick={handleCancel}>
-          Avbryt
+          Cancel
         </button>
       )}
     </form>
