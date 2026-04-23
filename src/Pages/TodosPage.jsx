@@ -5,7 +5,6 @@ import TodoList from "../components/TodoList";
 import TodoFilters from "../components/TodoFilters";
 import "../styles/Todos.css";
 
-
 const TodosPage = ({ todoList, setTodoList }) => {
   const [todos, setTodos] = useState({
     title: "",
@@ -15,19 +14,16 @@ const TodosPage = ({ todoList, setTodoList }) => {
     deadline: "",
   });
 
-  const [editTodo, setEditTodo] = useState(null); // Editering state
-  // Filter states
+  const [editTodo, setEditTodo] = useState(null);
   const [showFilter, setShowFilter] = useState(false);
   const [statusFilter, setStatusFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
-  // Sorting Todos
   const [sortBy, setSortBy] = useState("none");
-  const [sortDirection, setSortDirection] = useState("asc"); // asc = stigande, desc = fallande
+  const [sortDirection, setSortDirection] = useState("asc");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Edit existing todo
     if (editTodo !== null) {
       setTodoList((prevList) =>
         prevList.map((todo) =>
@@ -40,14 +36,12 @@ const TodosPage = ({ todoList, setTodoList }) => {
                 category: todos.category,
                 deadline: todos.deadline,
               }
-            : todo
-        )
+            : todo,
+        ),
       );
 
-      // lämna redigeringsläget
       setEditTodo(null);
     } else {
-      // Lägg till nytt todo
       const newTodo = {
         id: Date.now(),
         title: todos.title,
@@ -61,7 +55,6 @@ const TodosPage = ({ todoList, setTodoList }) => {
       setTodoList((prevTodos) => [...prevTodos, newTodo]);
     }
 
-    // Rensa formuläret (gäller både add och edit)
     setTodos({
       title: "",
       description: "",
@@ -84,9 +77,7 @@ const TodosPage = ({ todoList, setTodoList }) => {
 
   const toggleStatus = (id) => {
     setTodoList((prevList) =>
-      prevList.map((todo) =>
-        todo.id === id ? { ...todo, status: !todo.status } : todo
-      )
+      prevList.map((todo) => (todo.id === id ? { ...todo, status: !todo.status } : todo)),
     );
   };
 
@@ -110,44 +101,40 @@ const TodosPage = ({ todoList, setTodoList }) => {
   };
 
   const visibleTodos = [...todoList]
-  .filter((todo) => {
-    let statusMatch =
-      statusFilter === "all" ||
-      (statusFilter === "done" && todo.status) ||
-      (statusFilter === "undone" && !todo.status);
-      
-    let categoryMatch =
-      categoryFilter === "all" || todo.category === categoryFilter;
-    return statusMatch && categoryMatch;
-  })
+    .filter((todo) => {
+      const statusMatch =
+        statusFilter === "all" ||
+        (statusFilter === "done" && todo.status) ||
+        (statusFilter === "undone" && !todo.status);
 
-  .sort((a, b) => { 
-    if (sortBy === "none") return 0;
+      const categoryMatch = categoryFilter === "all" || todo.category === categoryFilter;
+      return statusMatch && categoryMatch;
+    })
+    .sort((a, b) => {
+      if (sortBy === "none") return 0;
 
-    let valueA;
-    let valueB;
+      let valueA;
+      let valueB;
 
-    if (sortBy === "deadline") {
-      valueA = new Date(a.deadline).getTime();
-      valueB = new Date(b.deadline).getTime();
-    }
+      if (sortBy === "deadline") {
+        valueA = new Date(a.deadline).getTime();
+        valueB = new Date(b.deadline).getTime();
+      }
 
-    if (sortBy === "timeEstimate") {
-      const [hoursA, minutesA] = a.timeEstimate.split(":");
-      const [hoursB, minutesB] = b.timeEstimate.split(":");
-      valueA = Number(hoursA) * 60 + Number(minutesA);
-      valueB = Number(hoursB) * 60 + Number(minutesB);
-    }
+      if (sortBy === "timeEstimate") {
+        const [hoursA, minutesA] = a.timeEstimate.split(":");
+        const [hoursB, minutesB] = b.timeEstimate.split(":");
+        valueA = Number(hoursA) * 60 + Number(minutesA);
+        valueB = Number(hoursB) * 60 + Number(minutesB);
+      }
 
-    if (sortBy === "status") {
-      valueA = Number(a.status);
-      valueB = Number(b.status);
-    }
+      if (sortBy === "status") {
+        valueA = Number(a.status);
+        valueB = Number(b.status);
+      }
 
-    return sortDirection === "asc" 
-    ? valueA - valueB // stigande
-    : valueB - valueA; // fallande
-  });
+      return sortDirection === "asc" ? valueA - valueB : valueB - valueA;
+    });
 
   return (
     <div className="todos-container">
@@ -156,13 +143,13 @@ const TodosPage = ({ todoList, setTodoList }) => {
 
         <nav>
           <Link to="/">
-            <h2>Översikt</h2>
+            <h2>Dashboard</h2>
           </Link>
         </nav>
       </section>
 
       <section>
-        <h2>{editTodo !== null ? "Redigera ärende" : "Nytt Todo"}</h2>
+        <h2>{editTodo !== null ? "Edit task" : "New task"}</h2>
 
         <TodoForm
           todos={todos}
@@ -174,23 +161,22 @@ const TodosPage = ({ todoList, setTodoList }) => {
       </section>
 
       <section>
-       <TodoFilters
-       showFilter ={showFilter}
-       setShowFilter={setShowFilter}
-       statusFilter={statusFilter}
-       setStatusFilter={setStatusFilter}
-       categoryFilter={categoryFilter}
-       setCategoryFilter={setCategoryFilter}
-       sortBy={sortBy}
-       setSortBy={setSortBy}
-       sortDirection={sortDirection}
-       setSortDirection={setSortDirection}
-       
-       />
+        <TodoFilters
+          showFilter={showFilter}
+          setShowFilter={setShowFilter}
+          statusFilter={statusFilter}
+          setStatusFilter={setStatusFilter}
+          categoryFilter={categoryFilter}
+          setCategoryFilter={setCategoryFilter}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          sortDirection={sortDirection}
+          setSortDirection={setSortDirection}
+        />
       </section>
 
       <section>
-        <h1>Alla ärenden</h1>
+        <h1>All tasks</h1>
 
         <TodoList
           todoList={visibleTodos}
