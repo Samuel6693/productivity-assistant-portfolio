@@ -58,6 +58,7 @@ Short version:
 In this repo, I focus on improving the project by:
 
 - making the codebase easier to maintain
+- translating the interface to consistent English
 - improving layout, styling, and responsiveness
 - polishing interaction flows and usability
 - fixing bugs and edge cases
