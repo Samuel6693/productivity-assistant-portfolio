@@ -1,49 +1,55 @@
 .habits-page {
-  padding: 20px;
-  max-width: 700px;
+  width: calc(100% - 32px);
+  max-width: 760px;
   margin: 0 auto;
+  padding: var(--space-page) 0;
 }
 
 .habits-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  margin-bottom: 28px;
 }
 
 .habits-header h1 {
   margin: 0;
   text-align: left;
-  color: #fff;
+  color: var(--color-text);
+  font-size: 2rem;
+  line-height: 1.1;
 }
 
 .habits-header a {
-  color: #646cff; 
+  color: var(--color-accent); 
   background: none;
   padding: 0;
   border: none;
-  font-size: 24px;
-  
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .habits-page h1,
 .habits-page h2 {
-  color: #fff;
+  color: var(--color-text);
 }
 .habits-page section h2 {
-  margin-bottom: 1rem;
- text-align: center;
+  margin: 28px 0 16px;
+  font-size: 1.3rem;
+  line-height: 1.2;
+  text-align: left;
 }
 
 .habit-form {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 15px;
-  border: 1px solid #444;
-  border-radius: 8px;
-  background: #1a1a1a;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
 }
 
 .habit-form label,
@@ -51,20 +57,20 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  align-items: center;
-  text-align: center;
-  color: #fff;
+  align-items: stretch;
+  text-align: left;
+  color: var(--color-text);
   font-weight: 500;
 }
 
 .controls select,
 .controls button.order-btn {
+  width: 100%;
   padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #555;
-  background: #111;
-  color: white;
-  min-width: 200px;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 .controls button.order-btn {
@@ -72,26 +78,28 @@
 }
 .habit-form input,
 .habit-form select {
+  width: 100%;
   padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #555;
-  background: #111;
-  color: white;
-  min-width: 220px;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 .habit-form button {
   padding: 10px;
-  border-radius: 6px;
-  background: #646cff;
-  border: none;
-  color: white;
+  border-radius: var(--radius-control);
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  color: #082f49;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .form-actions button:last-child {
-  background: #333;
-  border: 1px solid #555;
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
 }
 
 .form-actions {
@@ -102,37 +110,38 @@
 
 .controls {
   margin-top: 20px;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   padding: 15px;
-  border: 1px solid #444;
-  border-radius: 8px;
-  background: #1a1a1a;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
   align-items: center;
   justify-content: center;
 }
 
 .controls select {
+  width: 100%;
   padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #555;
-  background: #111;
-  color: white;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 .habit-list {
-  margin-top: 20px;
+  margin-top: 0;
   list-style: none;
   padding: 0;
 }
 
 .habit-item {
   padding: 15px;
-  border: 1px solid #555;
-  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
   margin-bottom: 15px;
-  background: #1a1a1a;
+  background: var(--color-surface);
 }
 
 .habit-item .left {
@@ -162,21 +171,20 @@
 .habit-item button,
 .habit-actions button {
   padding: 6px 10px;
-  border-radius: 6px;
-  background: #333;
-  border: 1px solid #555;
+  border-radius: var(--radius-control);
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
   cursor: pointer;
-  color: white;
+  color: var(--color-text);
 }
 
 .habit-item .meta {
   font-size: 0.9rem;
-  color: #ccc;
+  color: var(--color-muted);
   margin-top: 2px; 
 }
 
 .top-habits {
-  text-align: center;
   margin-top: 10px;
 }
 
@@ -188,7 +196,11 @@
 
 .top-habits li {
   margin: 6px 0;
-  color: #fff;
+  color: var(--color-text);
 }
 
- 
+@media (max-width: 720px) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
+}
