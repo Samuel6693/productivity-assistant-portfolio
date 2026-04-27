@@ -1,11 +1,11 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import HomePage from './pages/HomePage'
-import TodosPage from './pages/TodosPage'
-import HabitsPage from './pages/HabitsPage'
-import EventsPage from './pages/EventsPage'
-import Error from './pages/ErrorPage'
+import HomePage from './Pages/HomePage'
+import TodosPage from './Pages/TodosPage'
+import HabitsPage from './Pages/HabitsPage'
+import EventsPage from './Pages/EventsPage'
+import Error from './Pages/ErrorPage'
 
 
 const TODOS_STORAGE_KEY = "todos";
