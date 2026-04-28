@@ -152,6 +152,8 @@ const HabitsPage = ({ habits = [], setHabits = () => {} }) => {
       </section>
 
       <section className="page-section controls">
+        <h2>Filters & sorting</h2>
+
         <label>
           Filter
           <select value={filterPriority} onChange={(e) => setFilterPriority(e.target.value)}>

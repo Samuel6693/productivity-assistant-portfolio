@@ -103,7 +103,7 @@ const EventsPage = () => {
       </section>
 
       <section className="page-section events-section">
-        <h2>Filter</h2>
+        <h2>Filters</h2>
         <EventFilters filter={filter} setFilter={setFilter} />
       </section>
 

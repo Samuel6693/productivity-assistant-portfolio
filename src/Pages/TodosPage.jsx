@@ -158,6 +158,8 @@ const TodosPage = ({ todoList, setTodoList }) => {
       </section>
 
       <section className="page-section">
+        <h2>Filters</h2>
+
         <TodoFilters
           statusFilter={statusFilter}
           setStatusFilter={setStatusFilter}
@@ -171,7 +173,7 @@ const TodosPage = ({ todoList, setTodoList }) => {
       </section>
 
       <section className="page-section">
-        <h1>All tasks</h1>
+        <h2>All tasks</h2>
 
         <TodoList
           todoList={visibleTodos}
