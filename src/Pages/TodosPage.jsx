@@ -15,7 +15,6 @@ const TodosPage = ({ todoList, setTodoList }) => {
   });
 
   const [editTodo, setEditTodo] = useState(null);
-  const [showFilter, setShowFilter] = useState(false);
   const [statusFilter, setStatusFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [sortBy, setSortBy] = useState("none");
@@ -160,8 +159,6 @@ const TodosPage = ({ todoList, setTodoList }) => {
 
       <section className="page-section">
         <TodoFilters
-          showFilter={showFilter}
-          setShowFilter={setShowFilter}
           statusFilter={statusFilter}
           setStatusFilter={setStatusFilter}
           categoryFilter={categoryFilter}

@@ -1,6 +1,4 @@
 const TodoFilters = ({
-  showFilter,
-  setShowFilter,
   statusFilter,
   setStatusFilter,
   categoryFilter,
@@ -12,12 +10,7 @@ const TodoFilters = ({
 }) => {
   return (
     <section>
-      <button type="button" onClick={() => setShowFilter((state) => !state)}>
-        {showFilter ? "Hide filters" : "Filters"}
-      </button>
-
-      {showFilter && (
-        <div className="filters-panel">
+      <div className="filters-panel">
           <label>
             Status:{" "}
             <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
@@ -57,7 +50,6 @@ const TodoFilters = ({
             {sortDirection === "asc" ? "↑ Ascending" : "↓ Descending"}
           </button>
         </div>
-      )}
     </section>
   );
 };
