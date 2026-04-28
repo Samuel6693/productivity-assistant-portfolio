@@ -41,14 +41,14 @@ const TodoForm = ({ todos, setTodos, handleSubmit, handleCancel, editTodo }) => 
           onChange={(e) => setTodos({ ...todos, category: e.target.value })}
         >
           <option value="">Select category</option>
-          <option value="hÃ¤lsa">Health</option>
-          <option value="hushÃ¥ll">Home</option>
-          <option value="jobbrelaterat">Work</option>
-          <option value="studier">Studies</option>
-          <option value="ekonomi">Finance</option>
-          <option value="nÃ¶je">Leisure</option>
-          <option value="personlig">Personal</option>
-          <option value="Ã¶vrigt">Other</option>
+          <option value="health">Health</option>
+          <option value="home">Home</option>
+          <option value="work">Work</option>
+          <option value="studies">Studies</option>
+          <option value="finance">Finance</option>
+          <option value="leisure">Leisure</option>
+          <option value="personal">Personal</option>
+          <option value="other">Other</option>
         </select>
       </label>
       <br />

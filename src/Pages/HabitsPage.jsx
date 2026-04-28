@@ -97,12 +97,15 @@ const HabitsPage = ({ habits = [], setHabits = () => {} }) => {
 
   return (
     <div className="habits-page">
-      <section className="habits-header">
+      <section className="page-header">
         <h1>Habits</h1>
-        <Link to="/">Dashboard</Link>
+
+        <Link className="dashboard-link" to="/">
+          Dashboard
+        </Link>
       </section>
 
-      <section>
+      <section className="page-section">
         <h2>{editId ? "Edit habit" : "New habit"}</h2>
 
         <form onSubmit={handleSubmit} className="habit-form">
@@ -148,7 +151,9 @@ const HabitsPage = ({ habits = [], setHabits = () => {} }) => {
         </form>
       </section>
 
-      <section className="controls">
+      <section className="page-section controls">
+        <h2>Filters & sorting</h2>
+
         <label>
           Filter
           <select value={filterPriority} onChange={(e) => setFilterPriority(e.target.value)}>
@@ -181,7 +186,7 @@ const HabitsPage = ({ habits = [], setHabits = () => {} }) => {
         </label>
       </section>
 
-      <section>
+      <section className="page-section">
         <h2>All habits</h2>
         {sorted.length === 0 && <p>No habits yet</p>}
         <div className="habit-list">

@@ -15,7 +15,6 @@ const TodosPage = ({ todoList, setTodoList }) => {
   });
 
   const [editTodo, setEditTodo] = useState(null);
-  const [showFilter, setShowFilter] = useState(false);
   const [statusFilter, setStatusFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [sortBy, setSortBy] = useState("none");
@@ -138,17 +137,15 @@ const TodosPage = ({ todoList, setTodoList }) => {
 
   return (
     <div className="todos-container">
-      <section>
+      <section className="page-header">
         <h1>Tasks</h1>
 
-        <nav>
-          <Link to="/">
-            <h2>Dashboard</h2>
-          </Link>
-        </nav>
+        <Link className="dashboard-link" to="/">
+          Dashboard
+        </Link>
       </section>
 
-      <section>
+      <section className="page-section">
         <h2>{editTodo !== null ? "Edit task" : "New task"}</h2>
 
         <TodoForm
@@ -160,10 +157,10 @@ const TodosPage = ({ todoList, setTodoList }) => {
         />
       </section>
 
-      <section>
+      <section className="page-section">
+        <h2>Filters</h2>
+
         <TodoFilters
-          showFilter={showFilter}
-          setShowFilter={setShowFilter}
           statusFilter={statusFilter}
           setStatusFilter={setStatusFilter}
           categoryFilter={categoryFilter}
@@ -175,8 +172,8 @@ const TodosPage = ({ todoList, setTodoList }) => {
         />
       </section>
 
-      <section>
-        <h1>All tasks</h1>
+      <section className="page-section">
+        <h2>All tasks</h2>
 
         <TodoList
           todoList={visibleTodos}

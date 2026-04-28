@@ -78,17 +78,15 @@ const EventsPage = () => {
 
   return (
     <div className="events-container">
-      <section className="events-header">
+      <section className="page-header">
         <h1>Events</h1>
 
-        <nav>
-          <Link to="/">
-            <h2>Dashboard</h2>
-          </Link>
-        </nav>
+        <Link className="dashboard-link" to="/">
+          Dashboard
+        </Link>
       </section>
 
-      <section className="events-section">
+      <section className="page-section events-section">
         <h2>{editId ? "Edit event" : "New event"}</h2>
 
         <EventForm
@@ -104,12 +102,12 @@ const EventsPage = () => {
         />
       </section>
 
-      <section className="events-section">
-        <h2>Filter</h2>
+      <section className="page-section events-section">
+        <h2>Filters</h2>
         <EventFilters filter={filter} setFilter={setFilter} />
       </section>
 
-      <section className="events-section">
+      <section className="page-section events-section">
         <h2>All events</h2>
         <p>Number of events: {filteredEvents.length}</p>
 
