@@ -138,17 +138,15 @@ const TodosPage = ({ todoList, setTodoList }) => {
 
   return (
     <div className="todos-container">
-      <section>
+      <section className="page-header">
         <h1>Tasks</h1>
 
-        <nav>
-          <Link to="/">
-            <h2>Dashboard</h2>
-          </Link>
-        </nav>
+        <Link className="dashboard-link" to="/">
+          Dashboard
+        </Link>
       </section>
 
-      <section>
+      <section className="page-section">
         <h2>{editTodo !== null ? "Edit task" : "New task"}</h2>
 
         <TodoForm
@@ -160,7 +158,7 @@ const TodosPage = ({ todoList, setTodoList }) => {
         />
       </section>
 
-      <section>
+      <section className="page-section">
         <TodoFilters
           showFilter={showFilter}
           setShowFilter={setShowFilter}
@@ -175,7 +173,7 @@ const TodosPage = ({ todoList, setTodoList }) => {
         />
       </section>
 
-      <section>
+      <section className="page-section">
         <h1>All tasks</h1>
 
         <TodoList
