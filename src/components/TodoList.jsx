@@ -1,18 +1,27 @@
 const TodoList = ({ todoList, toggleStatus, deleteTodo, handleEdit }) => {
   if (todoList.length === 0) {
-    return <p>No tasks available yet.</p>;
+    return (
+      <p className="todo-empty">
+        No tasks match your current view. Add a task or adjust the filters.
+      </p>
+    );
   }
 
   return (
     <ul className="todo-list">
       {todoList.map((todo) => (
         <li key={todo.id} className={`todo-item ${todo.status ? "done" : ""}`}>
-          <h2>Title: {todo.title}</h2>
+          <h3>{todo.title}</h3>
           <p>Description: {todo.description}</p>
           <p>Time estimate: {todo.timeEstimate}</p>
           <p>Category: {todo.category}</p>
           <p>Deadline: {todo.deadline}</p>
-          <p>Status: {todo.status ? "Completed" : "Incomplete"}</p>
+          <p>
+            Status:{" "}
+            <span className={`todo-status ${todo.status ? "completed" : "open"}`}>
+              {todo.status ? "Completed" : "Open"}
+            </span>
+          </p>
 
           <div className="todo-actions">
             <button onClick={() => toggleStatus(todo.id)}>
