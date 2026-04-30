@@ -18,9 +18,9 @@ const TopHabits = ({ count = 3 }) => {
 
   if (!top || top.length === 0) {
     return (
-      <ul>
-        <p>No habits tracked yet</p>
-      </ul>
+      <p className="dashboard-empty">
+        No habits tracked yet. Add a habit to start building consistency.
+      </p>
     );
   }
 
@@ -28,8 +28,11 @@ const TopHabits = ({ count = 3 }) => {
     <ul>
       {top.map((habit) => (
         <li key={habit.id}>
-          <strong>{habit.title}</strong> - Reps: {habit.repetitions || 0} - Priority:{" "}
-          {translatePriority(habit.priority || "medium")}
+          <strong>{habit.title}</strong>
+          <span className="dashboard-meta">
+            Reps: {habit.repetitions || 0} · Priority:{" "}
+            {translatePriority(habit.priority || "medium")}
+          </span>
         </li>
       ))}
     </ul>
