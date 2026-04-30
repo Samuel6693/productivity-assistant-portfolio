@@ -103,7 +103,20 @@
   padding: 0;
 }
 
+.habit-empty {
+  margin: 0;
+  padding: 14px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface-muted);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
 .habit-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
   padding: 15px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
@@ -118,7 +131,8 @@
 
 .habit-item .left strong {
   display: block;
-  margin-bottom: 6px; 
+  margin-bottom: 6px;
+  font-size: 1.1rem;
 }
 
 .habit-actions {
@@ -132,6 +146,8 @@
   display: flex;
   gap: 8px;
   align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   flex-shrink: 0;
 }
 
@@ -147,8 +163,8 @@
 
 .habit-item .meta {
   font-size: 0.9rem;
-  color: var(--color-muted);
-  margin-top: 2px; 
+  color: var(--color-text-muted);
+  margin-top: 2px;
 }
 
 .top-habits {
@@ -169,5 +185,13 @@
 @media (max-width: 720px) {
   .controls {
     grid-template-columns: 1fr;
+  }
+
+  .habit-item {
+    flex-direction: column;
+  }
+
+  .habit-item .right {
+    justify-content: flex-start;
   }
 }
