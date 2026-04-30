@@ -13,9 +13,9 @@ const TodoFilters = ({
       <label>
         Status:{" "}
         <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
-          <option value="all">All</option>
-          <option value="done">Completed</option>
-          <option value="undone">Incomplete</option>
+          <option value="all">All tasks</option>
+          <option value="done">Completed tasks</option>
+          <option value="undone">Open tasks</option>
         </select>
       </label>
 
@@ -48,7 +48,7 @@ const TodoFilters = ({
         type="button"
         onClick={() => setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"))}
       >
-        {sortDirection === "asc" ? "Ascending" : "Descending"}
+        {sortDirection === "asc" ? "Sort ascending" : "Sort descending"}
       </button>
     </div>
   );

@@ -146,7 +146,7 @@ const TodosPage = ({ todoList, setTodoList }) => {
       </section>
 
       <section className="page-section">
-        <h2>{editTodo !== null ? "Edit task" : "New task"}</h2>
+        <h2>{editTodo !== null ? "Editing task" : "Create a new task"}</h2>
 
         <TodoForm
           todos={todos}
