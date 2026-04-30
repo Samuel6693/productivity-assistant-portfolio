@@ -17,25 +17,36 @@ const HomePage = ({ todoList }) => {
 
   return (
     <div className="dashboard-container">
-      <h1>Dashboard</h1>
-      <nav>
+      <header className="dashboard-header">
+        <p className="dashboard-eyebrow">Productivity overview</p>
+        <h1>Your dashboard</h1>
+        <p className="dashboard-intro">
+          Get a quick look at your open tasks, strongest habits, and upcoming events.
+        </p>
+      </header>
+
+      <div className="dashboard-grid">
         <section className="dashboard-section">
           <h2>Latest incomplete tasks</h2>
           {recentTodos.length === 0 ? (
-            <p></p>
+            <p className="dashboard-empty">
+              No open tasks right now. Add a task to start planning your next step.
+            </p>
           ) : (
             <ul>
               {recentTodos.map((todo) => (
                 <li key={todo.id}>
-                  {todo.title} - deadline: {todo.deadline}
+                  <strong>{todo.title}</strong>
+                  <span className="dashboard-meta">
+                    Deadline: {todo.deadline || "No deadline"}
+                  </span>
                 </li>
               ))}
             </ul>
           )}
 
-          <br />
           <Link className="dashboard-link" to="/todos">
-            Go to all tasks
+            View tasks
           </Link>
         </section>
 
@@ -44,9 +55,8 @@ const HomePage = ({ todoList }) => {
 
           <div className="top-habits">
             <TopHabits count={3} />
-            <br />
             <Link className="dashboard-link" to="/habits">
-              Go to all habits
+              View habits
             </Link>
           </div>
         </section>
@@ -55,25 +65,27 @@ const HomePage = ({ todoList }) => {
           <h2>Upcoming events</h2>
 
           {upcomingEvents.length === 0 ? (
-            <p>No upcoming events</p>
+            <p className="dashboard-empty">
+              No upcoming events yet. Add an event to see what is coming next.
+            </p>
           ) : (
             <ul>
               {upcomingEvents.map((event) => (
                 <li key={event.id}>
                   <strong>{event.title}</strong>
-                  <br />
-                  {new Date(event.start).toLocaleString()}
+                  <span className="dashboard-meta">
+                    Starts: {new Date(event.start).toLocaleString()}
+                  </span>
                 </li>
               ))}
             </ul>
           )}
 
-          <br />
           <Link className="dashboard-link" to="/events">
-            Go to all events
+            View events
           </Link>
         </section>
-      </nav>
+      </div>
     </div>
   );
 };
