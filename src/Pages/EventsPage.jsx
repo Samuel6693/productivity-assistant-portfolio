@@ -87,7 +87,7 @@ const EventsPage = () => {
       </section>
 
       <section className="page-section events-section">
-        <h2>{editId ? "Edit event" : "New event"}</h2>
+        <h2>{editId ? "Editing event" : "Create a new event"}</h2>
 
         <EventForm
           title={title}
@@ -109,7 +109,9 @@ const EventsPage = () => {
 
       <section className="page-section events-section">
         <h2>All events</h2>
-        <p>Number of events: {filteredEvents.length}</p>
+        <p className="event-count">
+          Showing {filteredEvents.length} {filteredEvents.length === 1 ? "event" : "events"}
+        </p>
 
         <EventList events={filteredEvents} onEdit={handleEdit} onDelete={handleDelete} />
       </section>
