@@ -1,25 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import EventForm from "../components/EventForm";
 import EventFilters from "../components/EventFilters";
 import EventList from "../components/EventList";
 import "../styles/Events.css";
 
-const EventsPage = () => {
+const EventsPage = ({ events = [], setEvents = () => {} }) => {
   const [filter, setFilter] = useState("all");
   const [title, setTitle] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [editId, setEditId] = useState(null);
-
-  const [events, setEvents] = useState(() => {
-    const saved = localStorage.getItem("events");
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("events", JSON.stringify(events));
-  }, [events]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

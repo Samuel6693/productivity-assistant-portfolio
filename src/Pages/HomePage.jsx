@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import TopHabits from "../components/HabitRanker";
 
-const HomePage = ({ todoList }) => {
-  const savedEvents = JSON.parse(localStorage.getItem("events")) || [];
+const HomePage = ({ todoList, habits, events }) => {
   const now = new Date();
 
-  const upcomingEvents = savedEvents
+  const upcomingEvents = events
     .filter((event) => new Date(event.start) >= now)
     .sort((a, b) => new Date(a.start) - new Date(b.start))
     .slice(0, 3);
@@ -54,7 +53,7 @@ const HomePage = ({ todoList }) => {
           <h2>Top habits</h2>
 
           <div className="top-habits">
-            <TopHabits count={3} />
+            <TopHabits habits={habits} count={3} />
             <Link className="dashboard-link" to="/habits">
               View habits
             </Link>
