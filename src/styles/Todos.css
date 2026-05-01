@@ -164,3 +164,23 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 560px) {
+  .todos-container {
+    width: calc(100% - 24px);
+  }
+
+  .todo-form,
+  .filters-panel,
+  .todo-item {
+    padding: 14px;
+  }
+
+  .todo-actions {
+    flex-direction: column;
+  }
+
+  .todo-actions button {
+    width: 100%;
+  }
+}
