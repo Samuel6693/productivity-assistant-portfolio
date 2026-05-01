@@ -11,18 +11,19 @@ const EventForm = ({
 }) => {
   return (
     <form className="event-form" onSubmit={handleSubmit}>
-      <h2>{editId ? "Edit event" : "Create event"}</h2>
-
-      <input
-        type="text"
-        placeholder="Title"
-        required
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+      <label>
+        Event title
+        <input
+          type="text"
+          placeholder="Example: Study session"
+          required
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      </label>
 
       <label>
-        Start time:
+        Start date and time
         <input
           type="datetime-local"
           required
@@ -32,7 +33,7 @@ const EventForm = ({
       </label>
 
       <label>
-        End time:
+        End date and time
         <input
           type="datetime-local"
           required
@@ -43,11 +44,9 @@ const EventForm = ({
 
       <button type="submit">{editId ? "Save changes" : "Add event"}</button>
 
-      {editId && (
-        <button type="button" onClick={handleCancel}>
-          Cancel
-        </button>
-      )}
+      <button type="button" className="secondary-btn" onClick={handleCancel}>
+        {editId ? "Cancel editing" : "Clear form"}
+      </button>
     </form>
   );
 };
