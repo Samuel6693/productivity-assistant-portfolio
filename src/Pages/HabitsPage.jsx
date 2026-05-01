@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import HabitFilters from "../components/HabitFilters";
+import HabitForm from "../components/HabitForm";
+import HabitList from "../components/HabitList";
 import "../styles/Habits.css";
 
 const HabitsPage = ({ habits = [], setHabits = () => {} }) => {
@@ -113,115 +116,44 @@ const HabitsPage = ({ habits = [], setHabits = () => {} }) => {
       <section className="page-section">
         <h2>{editId ? "Editing habit" : "Create a new habit"}</h2>
 
-        <form onSubmit={handleSubmit} className="habit-form">
-          <label>
-            Habit title
-            <input
-              value={title}
-              placeholder="Example: Read for 20 minutes"
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </label>
-
-          <label>
-            Priority
-            <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-              {PRIORITIES.map((level) => (
-                <option key={level} value={level}>
-                  {formatPriority(level)}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label>
-            Repetitions
-            <input
-              type="number"
-              min="0"
-              value={repetitions}
-              onChange={(e) => {
-                const value = e.target.value;
-                if (value === "") {
-                  setRepetitions("");
-                } else {
-                  setRepetitions(Math.max(0, Number(value)));
-                }
-              }}
-            />
-          </label>
-
-          <div className="form-actions">
-            <button type="submit">{editId ? "Save changes" : "Add habit"}</button>
-            <button type="button" onClick={resetForm}>
-              {editId ? "Cancel editing" : "Clear form"}
-            </button>
-          </div>
-        </form>
+        <HabitForm
+          editId={editId}
+          title={title}
+          priority={priority}
+          repetitions={repetitions}
+          priorities={PRIORITIES}
+          formatPriority={formatPriority}
+          setTitle={setTitle}
+          setPriority={setPriority}
+          setRepetitions={setRepetitions}
+          handleSubmit={handleSubmit}
+          resetForm={resetForm}
+        />
       </section>
 
-      <section className="page-section controls">
-        <h2>Filters & sorting</h2>
-
-        <label>
-          Filter by priority
-          <select value={filterPriority} onChange={(e) => setFilterPriority(e.target.value)}>
-            <option value="all">All priorities</option>
-            {PRIORITIES.map((level) => (
-              <option key={level} value={level}>
-                {formatPriority(level)}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          Sort by
-          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-            <option value="repetitions">Most repetitions</option>
-            <option value="priority">Priority level</option>
-          </select>
-        </label>
-
-        <label>
-          Order
-          <button
-            type="button"
-            className="order-btn"
-            onClick={() => setSortOrder((state) => (state === "desc" ? "asc" : "desc"))}
-          >
-            {sortOrder === "desc" ? "Sort descending" : "Sort ascending"}
-          </button>
-        </label>
-      </section>
+      <HabitFilters
+        filterPriority={filterPriority}
+        sortBy={sortBy}
+        sortOrder={sortOrder}
+        priorities={PRIORITIES}
+        formatPriority={formatPriority}
+        setFilterPriority={setFilterPriority}
+        setSortBy={setSortBy}
+        setSortOrder={setSortOrder}
+      />
 
       <section className="page-section">
         <h2>All habits</h2>
-        {sorted.length === 0 ? (
-          <p className="habit-empty">
-            No habits match your current view. Add a habit or adjust the priority filter.
-          </p>
-        ) : (
-          <div className="habit-list">
-            {sorted.map((habit) => (
-              <div key={habit.id} className="habit-item">
-                <div className="left">
-                  <strong>{habit.title}</strong>
-                  <div className="meta">
-                    {formatPriority(habit.priority)} - {habit.repetitions} repetitions
-                  </div>
-                </div>
-                <div className="right">
-                  <button onClick={() => inc(habit.id)}>+</button>
-                  <button onClick={() => dec(habit.id)}>-</button>
-                  <button onClick={() => reset(habit.id)}>Reset reps</button>
-                  <button onClick={() => startEdit(habit.id)}>Edit</button>
-                  <button onClick={() => removeHabit(habit.id)}>Delete</button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+
+        <HabitList
+          habits={sorted}
+          formatPriority={formatPriority}
+          inc={inc}
+          dec={dec}
+          reset={reset}
+          startEdit={startEdit}
+          removeHabit={removeHabit}
+        />
       </section>
     </div>
   );
