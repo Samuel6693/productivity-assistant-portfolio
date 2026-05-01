@@ -106,3 +106,21 @@
 .dashboard-section .dashboard-link {
   margin-top: 14px;
 }
+
+@media (max-width: 560px) {
+  .dashboard-container {
+    width: calc(100% - 24px);
+  }
+
+  .dashboard-container h1 {
+    font-size: 1.75rem;
+  }
+
+  .dashboard-header {
+    margin-bottom: 22px;
+  }
+
+  .dashboard-section {
+    padding: 14px;
+  }
+}

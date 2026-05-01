@@ -161,3 +161,31 @@
   color: var(--color-text);
 }
 
+@media (max-width: 560px) {
+  .events-container {
+    width: calc(100% - 24px);
+  }
+
+  .event-form,
+  .event-filters,
+  .event-item {
+    padding: 14px;
+  }
+
+  .event-filters,
+  .event-actions {
+    flex-direction: column;
+  }
+
+  .event-filters button,
+  .event-actions button,
+  .event-form button {
+    width: 100%;
+  }
+
+  .event-item-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+

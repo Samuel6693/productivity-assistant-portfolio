@@ -5,6 +5,7 @@
   --color-border: #334155;
   --color-text: #e5e7eb;
   --color-muted: #94a3b8;
+  --color-text-muted: var(--color-muted);
   --color-accent: #38bdf8;
   --color-accent-hover: #7dd3fc;
   --space-page: 24px;
@@ -44,6 +45,7 @@ button,
 input,
 select {
   font: inherit;
+  min-width: 0;
 }
 
 button {
@@ -96,4 +98,27 @@ button:focus-visible {
   margin: 0 0 16px;
   font-size: 1.3rem;
   line-height: 1.2;
+}
+
+@media (max-width: 560px) {
+  :root {
+    --space-page: 18px;
+  }
+
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .page-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .page-header .dashboard-link {
+    align-self: flex-start;
+  }
+
+  .page-section + .page-section {
+    margin-top: 22px;
+  }
 }

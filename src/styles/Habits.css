@@ -72,6 +72,7 @@
 
 .form-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 8px;
 }
@@ -193,5 +194,27 @@
 
   .habit-item .right {
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .habits-page {
+    width: calc(100% - 24px);
+  }
+
+  .habit-form,
+  .controls,
+  .habit-item {
+    padding: 14px;
+  }
+
+  .form-actions,
+  .habit-item .right {
+    flex-direction: column;
+  }
+
+  .form-actions button,
+  .habit-item .right button {
+    width: 100%;
   }
 }
