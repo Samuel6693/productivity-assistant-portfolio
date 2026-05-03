@@ -60,17 +60,6 @@ npm install
 npm run dev
 ```
 
-## Portfolio Description
-
-Short version:
-
-"A productivity app originally started as a school group project and later continued independently by me, focusing on React refactoring, UI polish, UX improvements, responsiveness, and portfolio-ready presentation."
-
 ## GitHub Project Description
 
 "Productivity Assistant is a React/Vite app for managing tasks, habits, and events. The project began as a school group assignment, and this repository is my independent continuation of that base. In this version I focused on cleaning up the codebase, improving component structure, polishing the UI and UX, adding clearer empty states and status indicators, improving responsiveness, and making the project easier to present as part of my frontend portfolio."
-
-## Notes
-
-- This repository is not intended to stay connected to the original group repository.
-- Authorship: the base project was group work, while the continued development in this copy is my own.
