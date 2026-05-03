@@ -77,35 +77,39 @@ const EventsPage = ({ events = [], setEvents = () => {} }) => {
         </Link>
       </section>
 
-      <section className="page-section events-section">
-        <h2>{editId ? "Editing event" : "Create a new event"}</h2>
+      <div className="page-workspace">
+        <section className="page-section page-form-panel events-section">
+          <h2>{editId ? "Editing event" : "Create a new event"}</h2>
 
-        <EventForm
-          title={title}
-          start={start}
-          end={end}
-          editId={editId}
-          setTitle={setTitle}
-          setStart={setStart}
-          setEnd={setEnd}
-          handleSubmit={handleSubmit}
-          handleCancel={handleCancel}
-        />
-      </section>
+          <EventForm
+            title={title}
+            start={start}
+            end={end}
+            editId={editId}
+            setTitle={setTitle}
+            setStart={setStart}
+            setEnd={setEnd}
+            handleSubmit={handleSubmit}
+            handleCancel={handleCancel}
+          />
+        </section>
 
-      <section className="page-section events-section">
-        <h2>Filters</h2>
-        <EventFilters filter={filter} setFilter={setFilter} />
-      </section>
+        <div className="page-list-panel">
+          <section className="page-section events-section">
+            <h2>Filters</h2>
+            <EventFilters filter={filter} setFilter={setFilter} />
+          </section>
 
-      <section className="page-section events-section">
-        <h2>All events</h2>
-        <p className="event-count">
-          Showing {filteredEvents.length} {filteredEvents.length === 1 ? "event" : "events"}
-        </p>
+          <section className="page-section events-section">
+            <h2>All events</h2>
+            <p className="event-count">
+              Showing {filteredEvents.length} {filteredEvents.length === 1 ? "event" : "events"}
+            </p>
 
-        <EventList events={filteredEvents} onEdit={handleEdit} onDelete={handleDelete} />
-      </section>
+            <EventList events={filteredEvents} onEdit={handleEdit} onDelete={handleDelete} />
+          </section>
+        </div>
+      </div>
     </div>
   );
 };

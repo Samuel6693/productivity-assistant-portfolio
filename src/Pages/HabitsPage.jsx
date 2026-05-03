@@ -113,48 +113,52 @@ const HabitsPage = ({ habits = [], setHabits = () => {} }) => {
         </Link>
       </section>
 
-      <section className="page-section">
-        <h2>{editId ? "Editing habit" : "Create a new habit"}</h2>
+      <div className="page-workspace">
+        <section className="page-section page-form-panel">
+          <h2>{editId ? "Editing habit" : "Create a new habit"}</h2>
 
-        <HabitForm
-          editId={editId}
-          title={title}
-          priority={priority}
-          repetitions={repetitions}
-          priorities={PRIORITIES}
-          formatPriority={formatPriority}
-          setTitle={setTitle}
-          setPriority={setPriority}
-          setRepetitions={setRepetitions}
-          handleSubmit={handleSubmit}
-          resetForm={resetForm}
-        />
-      </section>
+          <HabitForm
+            editId={editId}
+            title={title}
+            priority={priority}
+            repetitions={repetitions}
+            priorities={PRIORITIES}
+            formatPriority={formatPriority}
+            setTitle={setTitle}
+            setPriority={setPriority}
+            setRepetitions={setRepetitions}
+            handleSubmit={handleSubmit}
+            resetForm={resetForm}
+          />
+        </section>
 
-      <HabitFilters
-        filterPriority={filterPriority}
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        priorities={PRIORITIES}
-        formatPriority={formatPriority}
-        setFilterPriority={setFilterPriority}
-        setSortBy={setSortBy}
-        setSortOrder={setSortOrder}
-      />
+        <div className="page-list-panel">
+          <HabitFilters
+            filterPriority={filterPriority}
+            sortBy={sortBy}
+            sortOrder={sortOrder}
+            priorities={PRIORITIES}
+            formatPriority={formatPriority}
+            setFilterPriority={setFilterPriority}
+            setSortBy={setSortBy}
+            setSortOrder={setSortOrder}
+          />
 
-      <section className="page-section">
-        <h2>All habits</h2>
+          <section className="page-section">
+            <h2>All habits</h2>
 
-        <HabitList
-          habits={sorted}
-          formatPriority={formatPriority}
-          inc={inc}
-          dec={dec}
-          reset={reset}
-          startEdit={startEdit}
-          removeHabit={removeHabit}
-        />
-      </section>
+            <HabitList
+              habits={sorted}
+              formatPriority={formatPriority}
+              inc={inc}
+              dec={dec}
+              reset={reset}
+              startEdit={startEdit}
+              removeHabit={removeHabit}
+            />
+          </section>
+        </div>
+      </div>
     </div>
   );
 };

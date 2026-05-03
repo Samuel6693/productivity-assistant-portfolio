@@ -1,6 +1,6 @@
 .habits-page {
   width: calc(100% - 32px);
-  max-width: 760px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: var(--space-page) 0;
 }
@@ -166,21 +166,6 @@
   font-size: 0.9rem;
   color: var(--color-text-muted);
   margin-top: 2px;
-}
-
-.top-habits {
-  margin-top: 10px;
-}
-
-.top-habits ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.top-habits li {
-  margin: 6px 0;
-  color: var(--color-text);
 }
 
 @media (max-width: 720px) {

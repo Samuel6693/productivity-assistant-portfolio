@@ -1,6 +1,6 @@
 .events-container {
   width: calc(100% - 32px);
-  max-width: 760px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: var(--space-page) 0;
 }

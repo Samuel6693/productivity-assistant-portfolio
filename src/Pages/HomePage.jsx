@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
 import TopHabits from "../components/HabitRanker";
 
+const DashboardCard = ({ title, children, linkTo, linkLabel }) => (
+  <section className="dashboard-card">
+    <h2 className="dashboard-card-title">{title}</h2>
+    <div className="dashboard-card-content">{children}</div>
+    <Link className="dashboard-card-link" to={linkTo}>
+      {linkLabel}
+    </Link>
+  </section>
+);
+
 const HomePage = ({ todoList, habits, events }) => {
   const now = new Date();
 
@@ -25,16 +35,15 @@ const HomePage = ({ todoList, habits, events }) => {
       </header>
 
       <div className="dashboard-grid">
-        <section className="dashboard-section">
-          <h2>Latest incomplete tasks</h2>
+        <DashboardCard title="Latest incomplete tasks" linkTo="/todos" linkLabel="View tasks">
           {recentTodos.length === 0 ? (
             <p className="dashboard-empty">
               No open tasks right now. Add a task to start planning your next step.
             </p>
           ) : (
-            <ul>
+            <ul className="dashboard-preview-list">
               {recentTodos.map((todo) => (
-                <li key={todo.id}>
+                <li key={todo.id} className="dashboard-preview-item">
                   <strong>{todo.title}</strong>
                   <span className="dashboard-meta">
                     Deadline: {todo.deadline || "No deadline"}
@@ -43,34 +52,21 @@ const HomePage = ({ todoList, habits, events }) => {
               ))}
             </ul>
           )}
+        </DashboardCard>
 
-          <Link className="dashboard-link" to="/todos">
-            View tasks
-          </Link>
-        </section>
+        <DashboardCard title="Top habits" linkTo="/habits" linkLabel="View habits">
+          <TopHabits habits={habits} count={3} />
+        </DashboardCard>
 
-        <section className="dashboard-section">
-          <h2>Top habits</h2>
-
-          <div className="top-habits">
-            <TopHabits habits={habits} count={3} />
-            <Link className="dashboard-link" to="/habits">
-              View habits
-            </Link>
-          </div>
-        </section>
-
-        <section className="dashboard-section">
-          <h2>Upcoming events</h2>
-
+        <DashboardCard title="Upcoming events" linkTo="/events" linkLabel="View events">
           {upcomingEvents.length === 0 ? (
             <p className="dashboard-empty">
               No upcoming events yet. Add an event to see what is coming next.
             </p>
           ) : (
-            <ul>
+            <ul className="dashboard-preview-list">
               {upcomingEvents.map((event) => (
-                <li key={event.id}>
+                <li key={event.id} className="dashboard-preview-item">
                   <strong>{event.title}</strong>
                   <span className="dashboard-meta">
                     Starts: {new Date(event.start).toLocaleString()}
@@ -79,11 +75,7 @@ const HomePage = ({ todoList, habits, events }) => {
               ))}
             </ul>
           )}
-
-          <Link className="dashboard-link" to="/events">
-            View events
-          </Link>
-        </section>
+        </DashboardCard>
       </div>
     </div>
   );
