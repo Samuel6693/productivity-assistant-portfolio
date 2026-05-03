@@ -1,6 +1,6 @@
 .todos-container {
   width: calc(100% - 32px);
-  max-width: 760px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: var(--space-page) 0;
 }
@@ -59,7 +59,7 @@
 .filters-panel {
   margin-top: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: end;
   gap: 12px;
   padding: 15px;

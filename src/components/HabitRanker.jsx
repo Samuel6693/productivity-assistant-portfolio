@@ -16,9 +16,9 @@ const TopHabits = ({ habits = [], count = 3 }) => {
   }
 
   return (
-    <ul>
+    <ul className="dashboard-preview-list">
       {top.map((habit) => (
-        <li key={habit.id}>
+        <li key={habit.id} className="dashboard-preview-item">
           <strong>{habit.title}</strong>
           <span className="dashboard-meta">
             Reps: {habit.repetitions || 0} - Priority: {translatePriority(habit.priority || "medium")}

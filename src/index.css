@@ -100,6 +100,23 @@ button:focus-visible {
   line-height: 1.2;
 }
 
+.page-workspace {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.page-form-panel,
+.page-list-panel {
+  min-width: 0;
+}
+
+.page-form-panel {
+  position: sticky;
+  top: 24px;
+}
+
 @media (max-width: 560px) {
   :root {
     --space-page: 18px;
@@ -120,5 +137,15 @@ button:focus-visible {
 
   .page-section + .page-section {
     margin-top: 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .page-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .page-form-panel {
+    position: static;
   }
 }

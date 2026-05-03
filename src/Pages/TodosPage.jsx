@@ -145,43 +145,47 @@ const TodosPage = ({ todoList, setTodoList }) => {
         </Link>
       </section>
 
-      <section className="page-section">
-        <h2>{editTodo !== null ? "Editing task" : "Create a new task"}</h2>
+      <div className="page-workspace">
+        <section className="page-section page-form-panel">
+          <h2>{editTodo !== null ? "Editing task" : "Create a new task"}</h2>
 
-        <TodoForm
-          todos={todos}
-          setTodos={setTodos}
-          handleSubmit={handleSubmit}
-          handleCancel={handleCancel}
-          editTodo={editTodo}
-        />
-      </section>
+          <TodoForm
+            todos={todos}
+            setTodos={setTodos}
+            handleSubmit={handleSubmit}
+            handleCancel={handleCancel}
+            editTodo={editTodo}
+          />
+        </section>
 
-      <section className="page-section">
-        <h2>Filters</h2>
+        <div className="page-list-panel">
+          <section className="page-section">
+            <h2>Filters</h2>
 
-        <TodoFilters
-          statusFilter={statusFilter}
-          setStatusFilter={setStatusFilter}
-          categoryFilter={categoryFilter}
-          setCategoryFilter={setCategoryFilter}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-          sortDirection={sortDirection}
-          setSortDirection={setSortDirection}
-        />
-      </section>
+            <TodoFilters
+              statusFilter={statusFilter}
+              setStatusFilter={setStatusFilter}
+              categoryFilter={categoryFilter}
+              setCategoryFilter={setCategoryFilter}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+              sortDirection={sortDirection}
+              setSortDirection={setSortDirection}
+            />
+          </section>
 
-      <section className="page-section">
-        <h2>All tasks</h2>
+          <section className="page-section">
+            <h2>All tasks</h2>
 
-        <TodoList
-          todoList={visibleTodos}
-          toggleStatus={toggleStatus}
-          deleteTodo={deleteTodo}
-          handleEdit={handleEdit}
-        />
-      </section>
+            <TodoList
+              todoList={visibleTodos}
+              toggleStatus={toggleStatus}
+              deleteTodo={deleteTodo}
+              handleEdit={handleEdit}
+            />
+          </section>
+        </div>
+      </div>
     </div>
   );
 };

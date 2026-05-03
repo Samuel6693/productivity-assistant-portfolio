@@ -1,6 +1,6 @@
 # Productivity Assistant
 
-A React and Vite productivity app for managing todos, habits, and time-based events in one place.
+A React and Vite productivity app for managing tasks, habits, and time-based events in one place.
 
 ## Project Background
 
@@ -19,14 +19,16 @@ This repo exists to show how I can take an existing product idea and improve it 
 - stronger component structure
 - bug fixing and maintenance
 - ongoing feature development
+- clearer project presentation
 
 ## Current Features
 
-- Dashboard overview with quick access to the main sections
-- Todo management with create, edit, delete, filtering, sorting, and completion state
-- Habit tracking with priorities, repetition counters, filtering, and sorting
-- Event planning with create, edit, delete, upcoming and past filtering
-- Local storage persistence for todos, habits, and events
+- Dashboard overview with recent tasks, top habits, and upcoming events
+- Task management with create, edit, delete, filtering, sorting, and completion state
+- Habit tracking with priority levels, repetition counters, filtering, and sorting
+- Event planning with create, edit, delete, upcoming/past filtering, and clearer date display
+- Local storage persistence for tasks, habits, and events
+- Responsive layout improvements for smaller screens
 
 ## Tech Stack
 
@@ -36,6 +38,21 @@ This repo exists to show how I can take an existing product idea and improve it 
 - CSS
 - localStorage
 
+## My Contributions In This Version
+
+In this independent continuation, I improved the original base project by:
+
+- translating and standardizing the visible UI text in English
+- replacing starter-style layout with a more intentional app interface
+- improving page structure across dashboard, tasks, habits, and events
+- polishing dashboard overview cards and empty states
+- improving task form labels, edit/reset wording, list layout, status display, filters, and empty states
+- improving habit form wording, priority labels, repetition controls, filters, list cards, and empty states
+- improving event form wording, date presentation, filters, event cards, and past/upcoming status
+- improving responsive behavior across dashboard, forms, filters, and action button groups
+- refactoring shared localStorage logic into a reusable hook
+- making page folder naming consistent and splitting the habits page into smaller components
+
 ## Running The Project
 
 ```bash
@@ -43,27 +60,15 @@ npm install
 npm run dev
 ```
 
-## Portfolio Positioning
-
-When I present this project in a portfolio, I describe it as:
-
-"A productivity app originally started as a group project during school, later continued independently by me as a portfolio project focused on refactoring, UX improvements, styling, and further development."
+## Portfolio Description
 
 Short version:
 
-"Independent continuation of a school group project."
+"A productivity app originally started as a school group project and later continued independently by me, focusing on React refactoring, UI polish, UX improvements, responsiveness, and portfolio-ready presentation."
 
-## What I Contribute In This Version
+## GitHub Project Description
 
-In this repo, I focus on improving the project by:
-
-- making the codebase easier to maintain
-- translating the interface to consistent English
-- improving layout, styling, and responsiveness
-- polishing interaction flows and usability
-- fixing bugs and edge cases
-- strengthening the overall presentation for portfolio use
-- more will be updated later, and new features will be developed. 
+"Productivity Assistant is a React/Vite app for managing tasks, habits, and events. The project began as a school group assignment, and this repository is my independent continuation of that base. In this version I focused on cleaning up the codebase, improving component structure, polishing the UI and UX, adding clearer empty states and status indicators, improving responsiveness, and making the project easier to present as part of my frontend portfolio."
 
 ## Notes
 
