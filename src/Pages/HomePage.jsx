@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import TopHabits from "../components/HabitRanker";
+import TopHabits from "../components/HabitRanker.jsx";
 
 const DashboardCard = ({ title, children, linkTo, linkLabel }) => (
   <section className="dashboard-card">
