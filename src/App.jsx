@@ -1,4 +1,5 @@
 import "./App.css";
+import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import TodosPage from "./pages/TodosPage";
@@ -101,6 +102,8 @@ function App() {
         <Route path="/events" element={<EventsPage events={events} setEvents={setEvents} />} />
         <Route path="*" element={<Error />} />
       </Routes>
+
+      <Analytics />
     </BrowserRouter>
   );
 }
